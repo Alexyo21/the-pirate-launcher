@@ -95,7 +95,8 @@ This is a feature backported from [nx-hbmenu](https://switchbrew.org/wiki/Homebr
 hbmenu is looking for contributors! We're making this repository public so that you, the community, can make hbmenu into the menu of your dreams. Or show you how to make your own, better menu! Of course we'd rather you improved hbmenu rather than went off and started fragmenting the userbase, but any contributions to the homebrew scene are welcome. Feel free to use code from hbmenu for your own projects, so long as you give credit to its original authors.
 
 #### Credits
-
+- devkitpro: code and updates
+- cooolgamer: the pirate launcher
 - smea: code & original hbmenu version
 - fincs: code & rewrite
 - GEMISIS: code
