@@ -60,18 +60,18 @@ APP_AUTHOR		:=	hbmenu team
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
 
-CFLAGS	:=	-g -Wall -O2 -mword-relocations \
-			-fno-math-errno -ffunction-sections \
+CFLAGS	:=	-g -Wall -Og  -flto -mword-relocations \
+			-ffunction-sections \
 			$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -D__3DS__ -DVERSION=\"$(VERSTRING)\"
 
-CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
+CXXFLAGS	:= $(CFLAGS) -std=gnu++11 -flto
 
-ASFLAGS	:=	-g $(ARCH)
-LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+ASFLAGS	:=	-g -flto $(ARCH)
+LDFLAGS	=	-specs=3dsx.specs -g -flto $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lconfig -lcitro3d -lctru -lm -lz -ltinyxml2
+LIBS	:= -lconfig -lcitro3d -lctrud -lm -lz -ltinyxml2
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
