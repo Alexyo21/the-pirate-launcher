@@ -58,18 +58,18 @@ APP_AUTHOR		:=	hbmenu team
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
+ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mfpu=vfpv2 -mtp=soft -marm -mthumb-interwork
 
-CFLAGS	:=	-g -Wall -O2 -mword-relocations \
+CFLAGS	:=	-g -Wall -O2 -flto -mword-relocations \
 			-fno-math-errno -ffunction-sections \
 			$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -D__3DS__ -DVERSION=\"$(VERSTRING)\"
 
-CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
+CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11 -flto
 
-ASFLAGS	:=	-g $(ARCH)
-LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+ASFLAGS	:=	-g -flto $(ARCH)
+LDFLAGS	=	-specs=3dsx.specs -g -flto $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 LIBS	:= -lconfig -lcitro3d -lctru -lm -lz -ltinyxml2
 
