@@ -61,7 +61,7 @@ APP_AUTHOR		:=	hbmenu team
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mfpu=vfpv2 -mtp=soft -marm -mthumb-interwork
 
 CFLAGS	:=	-g -Wall -O2 -flto -mword-relocations \
-			-fno-math-errno -ffunction-sections \
+			-ffast-math -ffunction-sections \
 			$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -D__3DS__ -DVERSION=\"$(VERSTRING)\"
