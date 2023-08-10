@@ -58,10 +58,10 @@ APP_AUTHOR		:=	hbmenu team
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
+ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mfpu=vfpv2 -mtp=soft -marm -mthumb-interwork
 
-CFLAGS	:=	-g -Wall -Og  -flto -mword-relocations \
-			-ffunction-sections \
+CFLAGS	:=	-g -Wall -Og -flto -mword-relocations \
+		-fno-fast-math -ffunction-sections \
 			$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -D__3DS__ -DVERSION=\"$(VERSTRING)\"
