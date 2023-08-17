@@ -27,3 +27,5 @@
 
 #define DIRECTORY_SEPARATOR_CHAR '/'
 static const char DIRECTORY_SEPARATOR[] = "/";
+
+bool isDebugMode();
