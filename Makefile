@@ -9,6 +9,12 @@ endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/3ds_rules
 
+#enable debug features
+export DEBUG ?= 1
+
+#release version 
+export RELEASE ?= 0
+
 
 export VER_MAJOR	:= 2
 export VER_MINOR	:= 4
@@ -16,7 +22,7 @@ export VER_PATCH	:= 1
 
 export VERSTRING	:=	v$(VER_MAJOR).$(VER_MINOR).$(VER_PATCH)
 
-ifeq ($(RELEASE),)
+ifeq ($(RELEASE),1)
 	export VERSTRING	:=	$(VERSTRING)-$(shell git describe --dirty --always)
 endif
 
@@ -60,18 +66,31 @@ APP_AUTHOR		:=	hbmenu team
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mfpu=vfpv2 -mtp=soft -marm -mthumb-interwork
 
-CFLAGS	:=	-g -Wall -Og -flto -mword-relocations \
-		-fno-fast-math -ffunction-sections \
-			$(ARCH)
+ifeq ($(DEBUG),1)
+	OPTFLAGS := -Og -fno-fast-math
+	LIBCTR := -lctrud
+	UFLAGS := 
+else
+	OPTFLAGS := -O2 -fomit-frame-pointer -ffast-math
+	LIBCTR := -lctru
+	UFLAGS := -fno-rtti -fno-exceptions
+endif
+
+
+CFLAGS	:=	-g -Wall -flto -mword-relocations \
+	        -ffunction-sections \
+		$(OPTFLAGS) $(ARCH) 
 
 CFLAGS	+=	$(INCLUDE) -D__3DS__ -DVERSION=\"$(VERSTRING)\"
 
 CXXFLAGS	:= $(CFLAGS) -std=gnu++11 -flto
 
+CXXFLAGS        += $(UFLAGS)
+
 ASFLAGS	:=	-g -flto $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g -flto $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lconfig -lcitro3d -lctrud -lm -lz -ltinyxml2
+LIBS	:= -lconfig -lcitro3d $(LiBCTR) -lm -lz -ltinyxml2
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
