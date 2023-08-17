@@ -9,6 +9,14 @@ The Homebrew Launcher (hbmenu for short) is the main menu used to list and launc
 
 3DS homebrew is built and distributed as executables with the `.3dsx` extension. Note that you may encounter files with the `.cia` extension - these are **not** homebrew executables that can be loaded using hbmenu.
 
+You will however need a specific fork of luma to be able to use it. The reason being that at the time of writing, rosalina did not expose a way to communicate with it from third party homebrews.
+
+You can find my fork here https://github.com/Alexyo21/CustomLuma3DS
+
+This version of the homebrew launcher communicates with luma to make it start the debugger when starting a homebrew software and if a 3dslink.txt file is present on the root of the sd card, it will automatically start 3dslink when it starts, making it way faster to get started with debugging homebrews. Even more if you replace the boot.3dsx at the root of your sd card and then in the luma config (sd:/luma/config.ini), set the autoboot_mode value to 1. Doing this will make homebrew launcher start on boot of the 3ds, so that if your homebrew freezes the whole console you can very quickly go back to debugging after rebooting
+
+Original repository of homebrew launcher : https://github.com/devkitPro/3ds-hbmenu
+
 #### Usage
 
 To install hbmenu, simply copy `boot.3dsx` to the root of your SD card. If you are using a recent version of [Luma3DS](https://github.com/LumaTeam/Luma3DS) you probably already have a copy of hbmenu installed, as it comes bundled with it.
