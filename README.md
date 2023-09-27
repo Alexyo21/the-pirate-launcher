@@ -105,6 +105,7 @@ hbmenu is looking for contributors! We're making this repository public so that 
 #### Credits
 - devkitpro: code & updates
 - cooolgamer: the pirate launcher & code
+- Seledreams
 - smea: code & original hbmenu version
 - fincs: code & rewrite
 - GEMISIS: code
