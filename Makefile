@@ -16,7 +16,7 @@ export VER_PATCH	:= 1
 export VERSTRING	:=	v$(VER_MAJOR).$(VER_MINOR).$(VER_PATCH)
 
 #enable debug features
-export DEBUG ?= 1
+export DEBUG ?= 0
 
 #release version 
 export RELEASE ?= 1
