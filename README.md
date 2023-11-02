@@ -1,4 +1,6 @@
 # The Homebrew Launcher
+discord link:
+https://discord.com/invite/x4bb3WFw
 
 #### Presentation
 
