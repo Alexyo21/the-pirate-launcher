@@ -9,17 +9,17 @@ endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/3ds_rules
 
-export VER_MAJOR	:= 2
-export VER_MINOR	:= 4
-export VER_PATCH	:= 1
-
-export VERSTRING	:=	v$(VER_MAJOR).$(VER_MINOR).$(VER_PATCH)
-
 #enable debug features
 export DEBUG ?= 0
 
 #release version 
-export RELEASE ?= 1
+export RELEASE ?= 0
+
+export VER_MAJOR	:= 2
+export VER_MINOR	:= 4
+export VER_PATCH	:= 2
+
+export VERSTRING	:=	v$(VER_MAJOR).$(VER_MINOR).$(VER_PATCH)
 
 ifeq ($(RELEASE),1)
 	export VERSTRING	:=	$(VERSTRING)-$(shell git describe --dirty --always)
@@ -58,7 +58,7 @@ GFXBUILD	:=	$(ROMFS)/gfx
 
 APP_TITLE		:=	Homebrew Menu $(VERSTRING)
 APP_DESCRIPTION	:=	Nintendo 3DS Homebrew Launcher
-APP_AUTHOR		:=	hbmenu team
+APP_AUTHOR		:=	Alexyo21
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -241,7 +241,7 @@ $(OUTPUT).elf	:	$(OFILES)
 	@$(bin2o)
 
 #---------------------------------------------------------------------------------
-.PRECIOUS	:	%.t3x
+.PRECIOUS	:	%.t3x %.shbin
 #---------------------------------------------------------------------------------
 %.t3x.o	%_t3x.h :	%.t3x
 #---------------------------------------------------------------------------------
@@ -249,30 +249,10 @@ $(OUTPUT).elf	:	$(OFILES)
 	@$(bin2o)
 
 #---------------------------------------------------------------------------------
-# rules for assembling GPU shaders
+%.shbin.o %_shbin.h : %.shbin
 #---------------------------------------------------------------------------------
-define shader-as
-	$(eval CURBIN := $*.shbin)
-	$(eval DEPSFILE := $(DEPSDIR)/$*.shbin.d)
-	echo "$(CURBIN).o: $< $1" > $(DEPSFILE)
-	echo "extern const u8" `(echo $(CURBIN) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`"_end[];" > `(echo $(CURBIN) | tr . _)`.h
-	echo "extern const u8" `(echo $(CURBIN) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`"[];" >> `(echo $(CURBIN) | tr . _)`.h
-	echo "extern const u32" `(echo $(CURBIN) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`_size";" >> `(echo $(CURBIN) | tr . _)`.h
-	picasso -o $(CURBIN) $1
-	bin2s $(CURBIN) | $(AS) -o $*.shbin.o
-endef
-
-%.shbin.o %_shbin.h : %.v.pica %.g.pica
-	@echo $(notdir $^)
-	@$(call shader-as,$^)
-
-%.shbin.o %_shbin.h : %.v.pica
-	@echo $(notdir $<)
-	@$(call shader-as,$<)
-
-%.shbin.o %_shbin.h : %.shlist
-	@echo $(notdir $<)
-	@$(call shader-as,$(foreach file,$(shell cat $<),$(dir $<)$(file)))
+	$(SILENTMSG) $(notdir $<)
+	$(bin2o)
 
 #---------------------------------------------------------------------------------
 %.t3x	%.h	:	%.t3s
