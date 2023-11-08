@@ -2,6 +2,8 @@
 discord link:
 https://discord.com/invite/x4bb3WFw
 
+commit not in sync with the release
+
 #### Presentation
 
 The Homebrew Launcher (hbmenu for short) is the main menu used to list and launch homebrew applications. It is essentially a graphical shell around an existing homebrew loading mechanism. The following entrypoints are supported:
