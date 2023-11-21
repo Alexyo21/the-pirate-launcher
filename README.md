@@ -1,6 +1,6 @@
 # The Homebrew Launcher
 discord link:
-https://discord.com/invite/eCJQGuHr
+https://discord.com/invite/qR2D3dq43b
 
 commit not in sync with the release
 
