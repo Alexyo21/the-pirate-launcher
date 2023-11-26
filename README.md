@@ -1,4 +1,4 @@
-# The Homebrew Launcher
+# The Homebrew Launcher (nightly)
 discord link:
 https://discord.com/invite/qR2D3dq43b
 
