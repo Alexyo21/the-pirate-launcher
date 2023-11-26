@@ -6,6 +6,7 @@ commit not in sync with the release
 
 i will keep this repository to make some crazy experiment or test before to pubblic code in the official one... so for the stable version go to 
 https://github.com/cooolgamer/the-pirate-launcher
+thanks to everyone
 
 #### Presentation
 
