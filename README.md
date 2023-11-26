@@ -4,6 +4,9 @@ https://discord.com/invite/qR2D3dq43b
 
 commit not in sync with the release
 
+i will keep this repository to make some crazy experiment or test before to pubblic code in the official one... so for the stable version go to 
+https://github.com/cooolgamer/the-pirate-launcher
+
 #### Presentation
 
 The Homebrew Launcher (hbmenu for short) is the main menu used to list and launch homebrew applications. It is essentially a graphical shell around an existing homebrew loading mechanism. The following entrypoints are supported:
